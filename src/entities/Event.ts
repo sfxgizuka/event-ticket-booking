@@ -22,7 +22,7 @@ import {
     availableTickets: number;
   
     // Add a version column for optimistic locking
-    @VersionColumn({ default: 1 })
+    @VersionColumn() 
     version: number;
   
     @OneToMany(() => Booking, (booking) => booking.event)
