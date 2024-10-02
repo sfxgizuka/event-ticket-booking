@@ -1,0 +1,32 @@
+{
+  "name": "event-ticket-booking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec ts-node src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "typeorm": "typeorm-ts-node-esm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.0.1",
+    "express": "^5.0.0-beta.3",
+    "joi": "^17.13.3",
+    "nodemon": "^3.1.7",
+    "reflect-metadata": "^0.2.2",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.20",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "ts-node": "^10.9.2"
+  }
+}
