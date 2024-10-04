@@ -26,13 +26,14 @@ npm run typeorm migration:run
 ```bash
 npm run start
 ```
+The server will start running on http://localhost:3000.
+
 ## Testing
 To run the tests, use the following command:
 ```bash
 npm run test
 ```
 
-The server will start running on http://localhost:3000.
 
 ## Design Choices
 1. Entity Structure: The system uses three main entities: User, Event, and Booking. This separation allows for clear data management and relationships between users, events, and their bookings.
