@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import rateLimit from 'express-rate-limit';  // Import rate limiter
 import eventRoutes from './routes/eventRoutes';
 import { connectionOptions } from './config/database';
+import 'reflect-metadata';  // Add this line
+
 
 // Create Express app
 const app = express();
