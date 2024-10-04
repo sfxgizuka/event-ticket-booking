@@ -1,11 +1,9 @@
-// src/middlewares/auth.ts
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-
-const JWT_SECRET = 'your_jwt_secret'; // Use a strong secret in production
+import { JWT_SECRET } from '../../utils/env';
 
 export const authenticate = (req: Request, res: Response, next: NextFunction):void => {
-  const token = req.headers['authorization']?.split(' ')[1]; // Bearer token
+  const token = req.headers['authorization']?.split(' ')[1]; 
 
   if (!token) {
     res.status(401).json({ error: 'Unauthorized' });

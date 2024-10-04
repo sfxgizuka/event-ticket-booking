@@ -1,11 +1,9 @@
-// src/controllers/userController.ts
 import { Request, Response } from 'express';
 import { connectionOptions as AppDataSource } from '../config/database';
 import { User } from '../entities/User';
 import { compare } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
-const JWT_SECRET = 'your_jwt_secret'; // Replace with a strong secret
+import { JWT_SECRET } from '../utils/env';
 
 export const signup = async (req: Request, res: Response): Promise<void> => {
   const { username, password } = req.body;
@@ -38,7 +36,6 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // Generate JWT
     const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' });
     res.status(200).json({ token });
   } catch (error) {

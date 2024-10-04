@@ -1,17 +1,16 @@
 import 'reflect-metadata';
 import express from 'express';
 import bodyParser from 'body-parser';
-import rateLimit from 'express-rate-limit';  // Import rate limiter
+import rateLimit from 'express-rate-limit';
 import eventRoutes from './routes/eventRoutes';
 import { connectionOptions } from './config/database';
-import 'reflect-metadata';  // Add this line
+import userRoutes from './routes/userRoutes'
+import { PORT } from './utils/env';
 
 
-// Create Express app
+
 const app = express();
-const PORT = 3000;
 
-// Middleware
 app.use(bodyParser.json());
 
 // Rate limiting middleware
@@ -28,6 +27,7 @@ app.use(limiter);
 
 // Routes
 app.use('/api/events', eventRoutes);
+app.use('/api/user', userRoutes)
 
 // Root route
 app.get('/', (req, res) => {

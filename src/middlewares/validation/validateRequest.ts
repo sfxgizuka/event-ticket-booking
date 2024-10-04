@@ -9,7 +9,7 @@ export const validateRequest = (schema: Joi.ObjectSchema) => {
     if (error) {
       res.status(400).json({ error: error.details[0].message });
     } else {
-      next(); // Proceed to the next middleware/controller
+      next();
     }
   };
 };
