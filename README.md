@@ -102,4 +102,4 @@ The server will start running on http://localhost:3000.
 ## Logging
 The application uses a logging system that outputs to logs/combined.log. This helps in monitoring the application's behavior and troubleshooting issues.
 
-Note: The env was pushed to allow interviewer to run the app locally
+Note: The env was pushed to allow for code to run locally. Usually, env variables would be handled differently in a production environment.
