@@ -6,17 +6,22 @@ import eventRoutes from './routes/eventRoutes';
 import { connectionOptions } from './config/database';
 import userRoutes from './routes/userRoutes'
 import { PORT } from './utils/env';
-
-
+import logger from './utils/logger';
 
 const app = express();
 
 app.use(bodyParser.json());
 
+// Logging middleware
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.url}`);
+  next();
+});
+
 // Rate limiting middleware
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000, 
+  max: 100, 
   message: {
     error: 'Too many requests, please try again later.',
   },
@@ -36,20 +41,21 @@ app.get('/', (req, res) => {
 
 // 404 Route
 app.use((req, res) => {
+  logger.warn(`404 - Not Found: ${req.method} ${req.url}`);
   res.status(404).json({ error: 'Not Found' });
 });
 
 // Start the server and connect to the database
 connectionOptions.initialize()
   .then(() => {
-    console.log('Data Source has been initialized!');
+    logger.info('Data Source has been initialized!');
 
     app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`);
+      logger.info(`Server is running on http://localhost:${PORT}`);
     });
   })
   .catch((error) => {
-    console.error('Error during Data Source initialization', error);
+    logger.error('Error during Data Source initialization', error);
   });
 
 export default app;
