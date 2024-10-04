@@ -20,11 +20,15 @@ cd event-ticket-booking
 
 4. Run the migrations:
 ```bash
-npm run typeorm migration:run
+    npm run typeorm migration:run
 ```
-5. Start the server:
+5. Build the project:
 ```bash
-npm run start
+    npm run build
+```
+6. Start the server:
+```bash
+    npm run start
 ```
 The server will start running on http://localhost:3000.
 
