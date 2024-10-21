@@ -41,6 +41,16 @@ export const bookTicket = async (eventId: number, userId: string) => {
       return { status: 404, message: "Event not found" };
     }
 
+     // Check if the user already has a booking for this event
+     const existingBooking = await bookingRepository.findOne({
+      where: { userId: userId, event: { id: eventId } },
+    });
+
+    if (existingBooking) {
+      await queryRunner.rollbackTransaction();
+      return { status: 400, message: "User already has a booking for this event" };
+    }
+
     if (event.availableTickets > 0) {
       const booking = bookingRepository.create({ userId, event });
       await bookingRepository.save(booking);
